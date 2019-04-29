@@ -1,4 +1,3 @@
-README template
 # Jeff Ward - 5/1/2019
 
 ## Installation

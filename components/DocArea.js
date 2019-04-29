@@ -1,17 +1,42 @@
 import React from 'react'
 import DocGridItem from './DocGridItem'
+// import Context from '../components/Context'
 
-export default (props) => (
+export default (props) => {
+
+  console.log(props)
+
+  function totalSize(jsonBlob) {
+    let total = 0
+    jsonBlob.uploads.map((uploadedDoc) => {
+      total += Number(uploadedDoc.fileSize)
+    })
+    return total
+  }
+
+  function totalDocs(jsonBlob) {
+    return jsonBlob.uploads.length
+  }
+
+  return (
   <main>
     <div className="doc-area">
       <div className="docs-status">
-        <div className="docs-status-alpha"><span className="total-docs"># </span><span>Documents</span></div>
-        <div className="docs-status-beta"><span className="total-size">Total size: </span><span className="amount">#</span><span className="unit">kb</span></div>
+        <div className="docs-status-alpha">
+          <span className="total-docs">{totalDocs(props.docs)}&nbsp;</span>
+          <span>Documents</span></div>
+        <div className="docs-status-beta">
+          <span className="total-size">Total size: </span>
+          <span className="amount">&nbsp;{totalSize(props.docs)}</span>
+          <span className="unit">kb</span>
+        </div>
       </div>
       <ul className="doc-grid">
-        <DocGridItem />
-        <DocGridItem />
-        <DocGridItem />
+        {
+          props.docs.uploads.map((item, idx) => (
+            <DocGridItem key={'doc-upload'+idx} data={item}/>
+          ))
+        }
       </ul>
       <style jsx>{`
         main {
@@ -39,6 +64,7 @@ export default (props) => (
           grid-gap: 1rem;
           grid-template-columns: repeat(3, 1fr);
           grid-auto-flow: row dense;
+          margin-top: 10px;
         }
 
         @media (max-width: 768px) {
@@ -53,4 +79,5 @@ export default (props) => (
       `}</style>
     </div>
   </main>
-)
+  )
+}

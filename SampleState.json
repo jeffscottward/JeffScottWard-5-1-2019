@@ -1,32 +1,42 @@
-[
-  {
-    "name": "XXX.jpg",
-    "fileType": "jpg",
-    "size": "300kb"
-  },
-  {
-    "name": "YYY.jpg",
-    "fileType": "jpg",
-    "size": "500kb"
-  },
-  {
-    "name": "ZZZ.png",
-    "fileType": "png",
-    "size": "100kb"
-  },
-  {
-    "name": "OOO.gif",
-    "fileType": "gif",
-    "size": "700kb"
-  },
-  {
-    "name": "FFF.webp",
-    "fileType": "webp",
-    "size": "1000kb"
-  },
-  {
-    "name": "AAA.gif",
-    "fileType": "gif",
-    "size": "300kb"
+{
+  "docs": {
+    "uploads": [
+      {
+        "id": 0,
+        "name": "XXX.jpg",
+        "fileType": "jpg",
+        "fileSize": "300"
+      },
+      {
+        "id": 1,
+        "name": "YYY.jpg",
+        "fileType": "jpg",
+        "fileSize": "500"
+      },
+      {
+        "id": 2,
+        "name": "ZZZ.png",
+        "fileType": "png",
+        "fileSize": "100"
+      },
+      {
+        "id": 3,
+        "name": "OOO.gif",
+        "fileType": "gif",
+        "fileSize": "700"
+      },
+      {
+        "id": 4,
+        "name": "FFF.webp",
+        "fileType": "webp",
+        "fileSize": "1000"
+      },
+      {
+        "id": 5,
+        "name": "AAA.gif",
+        "fileType": "gif",
+        "fileSize": "300"
+      }
+    ]
   }
-]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "XXX.jpg",
+    "fileType": "jpg",
+    "size": "300kb"
+  },
+  {
+    "name": "YYY.jpg",
+    "fileType": "jpg",
+    "size": "500kb"
+  },
+  {
+    "name": "ZZZ.png",
+    "fileType": "png",
+    "size": "100kb"
+  },
+  {
+    "name": "OOO.gif",
+    "fileType": "gif",
+    "size": "700kb"
+  },
+  {
+    "name": "FFF.webp",
+    "fileType": "webp",
+    "size": "1000kb"
+  },
+  {
+    "name": "AAA.gif",
+    "fileType": "gif",
+    "size": "300kb"
+  }
+]

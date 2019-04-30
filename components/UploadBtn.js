@@ -1,7 +1,34 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import DocsContext from '../components/Context';
 import { useDropzone } from 'react-dropzone';
+import { checkFileSize, makeFileObj } from '../utils/files'
+
+// import axios from 'axios'
 
 function UploadBtn(props) {
+  const { dispatch } = useContext(DocsContext)
+  
+  function handleSuccessDrop (fileUploaded) {
+    let file = fileUploaded[0]
+    checkFileSize(file)
+    dispatch({ type: "SET_DOC", payload: makeFileObj(file) })
+    
+    // Backend Server -- if there's time?
+      // let formData = new FormData();
+      // formData.append("image", file);
+      // console.log(formData);
+
+      // axios.post('/upload', formData, {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data'
+      //   }
+      // }).then(function () {
+      //   console.log('success!!!!');
+      // }).catch(function () {
+      //   console.log('FAILURE!!');
+      // });
+  }
+
   const {
     getRootProps,
     open,
@@ -9,7 +36,9 @@ function UploadBtn(props) {
   } = useDropzone({
     noClick: true,
     noKeyboard: true,
-    accept: 'image/jpeg, image/png'
+    multiple: false,
+    accept: 'image/jpeg, image/png',
+    onDropAccepted: files => handleSuccessDrop(files)
   });
 
   return (

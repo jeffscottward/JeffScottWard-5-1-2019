@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Fuse from 'fuse.js'
 import UploadBtn from './UploadBtn'
-import Context from '../components/Context'
+import DocsContext from '../components/Context';
 
 var fuseOptions = {
   shouldSort: true,
@@ -15,27 +15,36 @@ var fuseOptions = {
   ]
 };
 
-export default (props) => {
-  var fuse = new Fuse(props.docs.uploads, fuseOptions)
+export default () => {
   const [searchString, setSearchString] = useState('')
-  function runFuzzySearch(input) {return fuse.search(input)}
-  console.log(runFuzzySearch(searchString))
+  const { docs } = useContext(DocsContext)
+  // const { visibleDocs, dispatchX } = useContext(DocsContext)
+  // console.log(docs)
+
+  var fuse = new Fuse(docs.uploads, fuseOptions)
+  function runFuzzySearch(input) {
+    return fuse.search(input)
+  }
+
+  function handleFuzzyInput (val) {
+    setSearchString(val)
+    const fuzzyResult = runFuzzySearch(val)
+    // console.log(fuzzyResult)
+    
+    // Update Context here
+    // dispatch({ type: "SET_VISIBLE_DOCS", payload: fuzzyResult})
+  }
+
   return (
     <header>
-      {/* <Context.Consumer>
-        {(stateData, setState) => {
-          return ( */}
-              <input
-                className="search"
-                type="text"
-                placeholder="Search documents..."
-                disabled={props.docs.uploads.length === 0}
-                value={searchString}
-                onChange={e => setSearchString(e.target.value)} />
-              <UploadBtn />
-          {/* )
-        }}
-      </Context.Consumer> */}
+      <input
+        className="search"
+        type="text"
+        placeholder="Search documents..."
+        disabled={docs.uploads.length === 0}
+        value={searchString}
+        onChange={e => handleFuzzyInput(e.target.value)} />
+      <UploadBtn />
       <style jsx>{`
         header {
           display: flex;

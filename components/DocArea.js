@@ -1,39 +1,27 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
+import DocsContext from '../components/Context';
 import DocGridItem from './DocGridItem'
-// import Context from '../components/Context'
+import { totalSize, totalDocs } from '../utils/totals'
 
-export default (props) => {
-
-  console.log(props)
-
-  function totalSize(jsonBlob) {
-    let total = 0
-    jsonBlob.uploads.map((uploadedDoc) => {
-      total += Number(uploadedDoc.fileSize)
-    })
-    return total
-  }
-
-  function totalDocs(jsonBlob) {
-    return jsonBlob.uploads.length
-  }
+export default () => {
+  const { docs } = useContext(DocsContext)
 
   return (
   <main>
     <div className="doc-area">
       <div className="docs-status">
         <div className="docs-status-alpha">
-          <span className="total-docs">{totalDocs(props.docs)}&nbsp;</span>
+          <span className="total-docs">{totalDocs(docs)}&nbsp;</span>
           <span>Documents</span></div>
         <div className="docs-status-beta">
           <span className="total-size">Total size: </span>
-          <span className="amount">&nbsp;{totalSize(props.docs)}</span>
+          <span className="amount">&nbsp;{totalSize(docs)}</span>
           <span className="unit">kb</span>
         </div>
       </div>
       <ul className="doc-grid">
         {
-          props.docs.uploads.map((item, idx) => (
+          docs.uploads.map((item, idx) => (
             <DocGridItem key={'doc-upload'+idx} data={item}/>
           ))
         }

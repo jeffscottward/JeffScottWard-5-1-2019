@@ -1,3 +1,3 @@
 import React from "react";
-const Context = React.createContext();
-export default Context;
+const DocsContext = React.createContext({});
+export default DocsContext;

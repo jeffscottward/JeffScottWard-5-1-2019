@@ -1,6 +1,7 @@
 import React from 'react'
 // import axios from 'axios'
-// import Context from '../components/Context'
+import DocsContext from '../components/Context'
+import { produce } from "immer";
 
 import Header from '../components/Header'
 import DocArea from '../components/DocArea'
@@ -8,77 +9,82 @@ import Normalize from '../components/Normalize'
 
 import SampleState from '../SampleState.json'
 
-// class Provider extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       initialState: SampleState,
-//       visibleDocs: []
-//     };
+function useImmerReducer(reducer, initialState) {
+  return React.useReducer(produce(reducer), initialState);
+}
+
+const docsReducer = (docs, action) => {
+  switch (action.type) {
+    case "SET_DOC":
+      docs.uploads.push(action.payload);
+      return;
+    case "REMOVE_DOC":
+      var removeIndex = docs.uploads.map(item => item.id )
+                                    .indexOf(action.payload)
+      const newArray = (removeIndex >= 0) && docs.uploads.splice(removeIndex, 1)
+    default:
+      return docs;
+  }
+};
+
+// const visibleDocsReducer = (visibleDocs, action) => {
+//   switch (action.type) {
+//     case "SET_VISIBLE_DOCS":
+//       console.log('action.payload'+action.payload)
+//       visibleDocs = action.payload;
+//       return;
+//     case "RESET_VISIBLE_DOCS":
+//       visibleDocs = SampleState.docs;
+//       return;
+//     default:
+//       return visibleDocs;
 //   }
+// };
 
-//   changeVisibleDocs = (key, val) => {
-//     this.setState({[key]: val});
-//   }
+export default () => {
+  const [docs, dispatch] = useImmerReducer(docsReducer, SampleState.docs);
+  // const [visibleDocs, dispatch] = useImmerReducer(visibleDocsReducer, []);
 
-//   render() {
-//     return (
-//       <Context.Provider
-//         value={{
-//           state: this.state,
-//           changeVisibleDocs: this.changeVisibleDocs
-//         }}
-//       >
-//         {this.props.children}
-//       </Context.Provider>
-//     );
-//   }
-// }
+  return (
+    <DocsContext.Provider value={{
+      docs: docs,
+      dispatch
+    }}>
+      <div id="app">
+        <Header/>
+        <DocArea/>
+        <Normalize />
+        <style jsx global>{`
+          * {
+            box-sizing: border-box;
+            font-family: sans-serif;
+          }
 
-const Index = () => (
-  // <Provider>
-    <div id="app">
-      {/* <Context.Consumer>
-        {(stateData) => {
-          return ( */}
-            <div>
-              <Header docs={SampleState.docs} />
-              <DocArea docs={SampleState.docs} />
-            </div>
-          {/* )
-        }}
-      </Context.Consumer> */}
-      <Normalize />
-      <style jsx global>{`
-        * {
-          box-sizing: border-box;
-          font-family: sans-serif;
-        }
+          #app{
+            max-width: 960px;
+            padding: 40px;
+            margin: auto;
+          }
 
-        #app{
-          max-width: 960px;
-          padding: 40px;
-          margin: auto;
-        }
+          ul, li { 
+            list-style: none;
+            margin: 0;
+            padding: 0;
+          }
 
-        ul, li { 
-          list-style: none;
-          margin: 0;
-          padding: 0;
-        }
-
-        button,
-        input[type="button"],
-        input[accept="image/jpeg, image/png"] {
-          background: #C2D5FF;
-          border: 1px solid #575757;
-          color: #171E37;
-          font-size: 1rem;
-        }
-      `}</style>
-    </div>
-  // </Provider>
-)
+          button,
+          input[type="button"],
+          input[accept="image/jpeg, image/png"] {
+            background: #C2D5FF;
+            border: 1px solid #575757;
+            color: #171E37;
+            font-size: 1rem;
+          }
+        `}</style>
+      </div>
+    </DocsContext.Provider>
+  )
+}
 
 // Index.getInitialProps = async function (context) {
 //   // const { id } = context.query
@@ -95,5 +101,3 @@ const Index = () => (
 
 //   return { data }
 // }
-
-export default Index

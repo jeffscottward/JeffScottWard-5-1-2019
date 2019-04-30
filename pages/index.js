@@ -10,6 +10,8 @@ import DocsContext from '../components/Context'
 import { useImmerReducer } from '../reducers/immerReducer'
 import { docsReducer } from '../reducers/docsReducer'
 
+import { buttonStyles } from '../components/cssVars'
+
 export default () => {
   const [docs, dispatch] = useImmerReducer(docsReducer, SampleState.docs);
   return (
@@ -42,13 +44,25 @@ export default () => {
           button,
           input[type="button"],
           input[accept="image/jpeg, image/png"] {
-            background: #C2D5FF;
-            border: 1px solid #575757;
-            color: #171E37;
-            font-size: 1rem;
+            background: ${buttonStyles.background};
+            border: ${buttonStyles.border};
+            color: ${buttonStyles.color};
+            font-size: ${buttonStyles['font-size']};
           }
         `}</style>
       </div>
     </DocsContext.Provider>
   )
 }
+
+// Server-side rendering example:
+// Fetch is done and rendered to page before sending app to browser
+
+// Index.getInitialProps = async function () {
+//   const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
+//   const data = await res.json()
+//   console.log(`Show data fetched. Count: ${data.length}`)
+//   return {
+//     shows: data
+//   }
+// }

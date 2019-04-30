@@ -3,6 +3,8 @@ import UploadBtn from './UploadBtn'
 import DocsContext from '../components/Context';
 import fuzzySearch from '../utils/fuzzy';
 
+import { borderColor } from '../components/cssVars'
+
 export default () => {
   const [searchString, setSearchString] = useState('')
   const { docs, dispatch } = useContext(DocsContext)
@@ -39,7 +41,7 @@ export default () => {
 
         .search {
           background: #F7F7F7;
-          border: 1px solid #575757;
+          border: 1px solid ${borderColor};
           width: 500px;
           padding: 10px;
           font-size: 1rem;

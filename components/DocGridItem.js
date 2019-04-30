@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import DocsContext from '../components/Context';
 
+import { borderColor } from '../components/cssVars'
+
 export default (props) => {
   let {data} = props
   const { dispatch } = useContext(DocsContext)
@@ -24,16 +26,14 @@ export default (props) => {
       </div>
       <style jsx>{`
         .doc { 
-          border: 1px solid #575757; 
+          border: 1px solid ${borderColor};
           padding: 25px;
           white-space: nowrap;
           overflow: hidden;
-          text-overflow: ellipsis;
         }
         
         .doc-label-row:first-child {
           margin-bottom: 20px;
-          text-overflow: ellipsis;
           overflow: hidden;
         }
         

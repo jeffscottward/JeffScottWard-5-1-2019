@@ -26,27 +26,28 @@ npx cypress run
 ```
 
 ## Security
-// List security concerns:
 ### Addressed
 - XSS ( built-in w/ react - also - no backend in this project)
-- Specific Filetype upload with React-DropZone
-- General Unit Testing for bugs
+- Specific Filetypes uploading with React-DropZone
+- General unit testing
 - No data persisted client side - no auth or session tracking
 - File size limit
 - File amount per upload limit
 - npm audit - shows 0 vulns!
 ### *Not* been addressed
+- Ensure on the backend the file is ok ( malicious, correct type, size, etc)
+- TypeScript would have been nice if I had time to grok that on top of everything else
 - SSL certs ( only dev local here )
-- Tokens w/ expiry for logins ( no backend & auth here )
-- Cross Site Request Forgery ( haven't looked into this with React SPA's )
+- Tokens w/ expiry for logins ( no backend or auth here )
 - CORS Policies ( no backend here )
-- Everything covered here that React wouldn't have solved under the hood
-- https://github.com/OWASP/CheatSheetSeries#cheat-sheets-index
-- NOTE (I would be particularly interested in building a test suite with Mocha & Cypress for all of these)
+- Cross Site Request Forgery ( haven't looked into this with React SPA's )
+- Everything covered here (massive list) that React wouldn't have solved under the hood
+  - https://github.com/OWASP/CheatSheetSeries#cheat-sheets-index
+  - NOTE: (I would be particularly interested in building a test suite with Mocha & Cypress for all of these)
 
 ## Improvements
-// What could be added to the app / API?
  - An actual backend with endpoints - not simply loading a JSON file
+ - 100% test coverage on both Unit and E2E
 
 ## Libraries
 - Next.js
@@ -61,41 +62,42 @@ npx cypress run
   - Excellent documentation
   - Straight forward implementation
 - Immer.js
-  - Was included in a tutoial about useContext
-  - Seems like a strong up and comer for immutable state
-  - Less complex in implementation than Redux
+  - Action dispatching and immutabilty (state handled by React Context & Hooks)
+  - Was included in a tutoial about useContext, looked neat
+  - Seems like a strong up and comer
+  - Less complex in implementation than Redux (I think)
   - https://github.com/immerjs/immer#benefits
 - React-Dropzone
   - Lots of options to make life easy
   - Well accepted by community
   - Filters out file types for you
   - Gives you callback to work with
+  - Testing tool plugins available for it
 - Mocha.js + Chai w/Enzyme / Cypress.io
   - Well accepted by community
   - Very easy to use!! BDD <3
   - Very flexible with plugins
-  - Cypress is by far the best E2E tool of all time - so much power
+  - Cypress is by far the best E2E tool - so much power *flexs guns*
 - Normalize.css
   - Because browsers are still hot garbage and need to be wrangled
 - Babel-dev stuff
-  - To use ES6
+  - To use ES6 jazz
 
 ## API
 Any general observation about the API?
-  -- Didn't have time 
-    - had to learn an enitre new state managment system
-    - had to bail out of a Next.js boilerplate that broke testing
-  -- This is backend API design & dev - not frontend
+  - Simple, too simple for a real world use case
+  - Other than an IPFS driven app, can't recall any app with file uploads than weren't scoped to a user
+  - 
 
-### GET /user-docs/:id
+### GET /docs
 #### Description of the endpoint:
 - what would the endpoint do?
-  - send back existing documents already uploaded by a user
+  - send back existing documents already uploaded
 - what would it return?
-  - a JSON blob of attributes of each doc 
-  - actual file data only needed if viewing the files
-- would it accept specific parameters? ```
-  - the :userId of the requester
+  - a JSON blob of attributes of all the docs
+  - actual file data only needed if *viewing* the files in the ui
+- would it accept specific parameters?
+  - no
 
 ### GET /doc/:id
 #### Description of the endpoint:
@@ -103,15 +105,21 @@ Any general observation about the API?
   - send back the specific document
 - what would it return?
   - a JSON blob of attributes of the doc requested
-  - actual file data only needed if viewing the file
+  - actual file data only needed if *viewing* the files in the ui
 - would it accept specific parameters? ```
   - the :id of the requested document
-- NOTE: should be mindful of a user requesting a doc that isn't theirs
 
 ### POST /upload
 - what does the endpoint do?
-  - allow a user to upload a doc (image file only)
+  - allow a user to upload a doc (image files only)
 - what does it return?
   - Success 200 or some sort of Error response
 - does it accept specific parameters? ```
   - no - for the sake of the demo, its one file only per upload
+
+## Other Notes
+  - API development is generally out of scope of UI Engineer, I can dabble but 48 hours is tight for the total ask
+  - Most of Day 1 was spent learning a whole new state managment methodolgy -> React Context X React Hooks
+  - Didn't have time to build real functionality - but mocked it in `ExampleServer.js`
+  - The brief was labeled UI/UX - yet there was very little CSS effort.
+  - What role is actually in consideration? This is mostly a full stack excercise.

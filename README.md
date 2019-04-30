@@ -1,11 +1,13 @@
 # Jeff Ward - 5/1/2019
 
 ## Installation
+```bash
 npm install
 npm run dev
 # or
 yarn
 yarn dev
+```
 
 ## Run Mocha tests
 ```bash
@@ -29,14 +31,14 @@ npx cypress run
 ### Addressed
 - XSS ( built-in w/ react - also - no backend in this project)
 - Specific Filetypes uploading with React-DropZone
-- General unit testing
+- General unit and E2E testing
 - No data persisted client side - no auth or session tracking
 - File size limit
 - File amount per upload limit
 - npm audit - shows 0 vulns!
 ### *Not* been addressed
 - Ensure on the backend the file is ok ( malicious, correct type, size, etc)
-- TypeScript would have been nice if I had time to grok that on top of everything else
+- TypeScript for safety
 - SSL certs ( only dev local here )
 - Tokens w/ expiry for logins ( no backend or auth here )
 - CORS Policies ( no backend here )
@@ -71,7 +73,7 @@ npx cypress run
   - Lots of options to make life easy
   - Well accepted by community
   - Filters out file types for you
-  - Gives you callback to work with
+  - Gives you callbacks to work with
   - Testing tool plugins available for it
 - Mocha.js + Chai w/Enzyme / Cypress.io
   - Well accepted by community
@@ -81,13 +83,12 @@ npx cypress run
 - Normalize.css
   - Because browsers are still hot garbage and need to be wrangled
 - Babel-dev stuff
-  - To use ES6 jazz
+  - To use ES6 jazz in testing
 
 ## API
 Any general observation about the API?
   - Simple, too simple for a real world use case
   - Other than an IPFS driven app, can't recall any app with file uploads than weren't scoped to a user
-  - 
 
 ### GET /docs
 #### Description of the endpoint:

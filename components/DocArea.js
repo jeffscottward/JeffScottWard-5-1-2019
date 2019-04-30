@@ -21,9 +21,15 @@ export default () => {
       </div>
       <ul className="doc-grid">
         {
-          docs.uploads.map((item, idx) => (
-            <DocGridItem key={'doc-upload'+idx} data={item}/>
-          ))
+          !docs.visible ? (
+            docs.uploads.map((item, idx) => (
+              <DocGridItem key={'doc-upload' + idx} data={item} />
+            ))
+          ) : (
+            docs.visible.map((item, idx) => (
+              <DocGridItem key={'doc-upload' + idx} data={item} />
+            ))
+          )
         }
       </ul>
       <style jsx>{`

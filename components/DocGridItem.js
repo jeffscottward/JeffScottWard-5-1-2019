@@ -33,12 +33,13 @@ export default (props) => {
         
         .doc-label-row:first-child {
           margin-bottom: 20px;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
         
         .doc-label-row:last-child {
           display: flex;
           justify-content: space-between;
-          overflow: hidden;
         }
         
         .doc-name {

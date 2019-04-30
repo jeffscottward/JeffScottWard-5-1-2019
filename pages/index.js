@@ -19,9 +19,19 @@ const docsReducer = (docs, action) => {
       return;
     case "REMOVE_DOC":
       // Fancy algo - https://stackoverflow.com/a/26327271
-      var removeIndex = docs.uploads.map(item => item.id)
-        .indexOf(action.payload)
-      const newArray = (removeIndex >= 0) && docs.uploads.splice(removeIndex, 1)
+      var removeIndex = docs.uploads.map(item => item.id).indexOf(action.payload)
+      if(removeIndex >= 0){docs.uploads.splice(removeIndex, 1)}
+      return;
+    case "SET_VISIBLE_DOCS":
+      // if no fuzzy search started
+      // if (!!docs.visible === false){
+      // }
+      if(action.payload.length === 0 ) {
+        docs.visible = docs.uploads
+      } else {
+        docs.visible = action.payload
+      }
+      return;
     default:
       return docs;
   }

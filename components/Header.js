@@ -17,11 +17,9 @@ var fuseOptions = {
 
 export default () => {
   const [searchString, setSearchString] = useState('')
-  const { docs } = useContext(DocsContext)
-  // const { visibleDocs, dispatchX } = useContext(DocsContext)
-  // console.log(docs)
+  const { docs, dispatch } = useContext(DocsContext)
+  const fuse = new Fuse(docs.uploads, fuseOptions)
 
-  var fuse = new Fuse(docs.uploads, fuseOptions)
   function runFuzzySearch(input) {
     return fuse.search(input)
   }
@@ -29,10 +27,10 @@ export default () => {
   function handleFuzzyInput (val) {
     setSearchString(val)
     const fuzzyResult = runFuzzySearch(val)
-    // console.log(fuzzyResult)
+    console.log(fuzzyResult)
     
     // Update Context here
-    // dispatch({ type: "SET_VISIBLE_DOCS", payload: fuzzyResult})
+    dispatch({ type: "SET_VISIBLE_DOCS", payload: fuzzyResult})
   }
 
   return (

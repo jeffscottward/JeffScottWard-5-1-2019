@@ -4,38 +4,38 @@
       {
         "id": 314340,
         "name": "XXX.jpg",
-        "fileType": "jpg",
-        "fileSize": "300"
+        "type": "jpg",
+        "size": "300"
       },
       {
         "id": 453535,
         "name": "YYY.jpg",
-        "fileType": "jpg",
-        "fileSize": "500"
+        "type": "jpg",
+        "size": "500"
       },
       {
         "id": 325235,
         "name": "ZZZ.png",
-        "fileType": "png",
-        "fileSize": "100"
+        "type": "png",
+        "size": "100"
       },
       {
         "id": 542352,
         "name": "OOO.gif",
-        "fileType": "gif",
-        "fileSize": "700"
+        "type": "gif",
+        "size": "700"
       },
       {
         "id": 234324,
         "name": "FFF.webp",
-        "fileType": "webp",
-        "fileSize": "1000"
+        "type": "webp",
+        "size": "1000"
       },
       {
         "id": 635463,
         "name": "AAA.gif",
-        "fileType": "gif",
-        "fileSize": "300"
+        "type": "gif",
+        "size": "300"
       }
     ]
   }

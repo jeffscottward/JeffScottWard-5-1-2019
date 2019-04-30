@@ -1,4 +1,0 @@
-- User loads page
-  - if docs exist
-    - User may search (filter down) for any existing doc
-    - User may delete any doc

@@ -1,5 +1,4 @@
 import React from 'react'
-// import axios from 'axios'
 import DocsContext from '../components/Context'
 import { produce } from "immer";
 
@@ -19,8 +18,9 @@ const docsReducer = (docs, action) => {
       docs.uploads.push(action.payload);
       return;
     case "REMOVE_DOC":
-      var removeIndex = docs.uploads.map(item => item.id )
-                                    .indexOf(action.payload)
+      // Fancy algo - https://stackoverflow.com/a/26327271
+      var removeIndex = docs.uploads.map(item => item.id)
+        .indexOf(action.payload)
       const newArray = (removeIndex >= 0) && docs.uploads.splice(removeIndex, 1)
     default:
       return docs;
@@ -51,8 +51,8 @@ export default () => {
       dispatch
     }}>
       <div id="app">
-        <Header/>
-        <DocArea/>
+        <Header />
+        <DocArea />
         <Normalize />
         <style jsx global>{`
           * {
@@ -85,19 +85,3 @@ export default () => {
     </DocsContext.Provider>
   )
 }
-
-// Index.getInitialProps = async function (context) {
-//   // const { id } = context.query
-
-//   console.log(context.req)
-
-//   let data = {}
-  
-//   // const res = await axios.get('http://localhost:3000/docs-api/')
-//   // console.log(`res: ${res.data}`)
-//   // const data = await res.json()
-
-//   // console.log(`Fetched: ${data}`)
-
-//   return { data }
-// }

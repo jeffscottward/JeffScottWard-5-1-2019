@@ -1,16 +1,13 @@
 {
-  "name": "custom-server-express",
+  "name": "with-mocha",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node server.js",
+    "test": "NODE_ENV=test mocha",
+    "dev": "next",
     "build": "next build",
-    "start": "cross-env NODE_ENV=production node server.js",
-    "test": "mocha"
+    "start": "next start"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "express": "^4.14.0",
-    "formidable": "^1.2.1",
     "fuse.js": "^3.4.4",
     "immer": "^3.1.1",
     "next": "^8.1.0",
@@ -20,15 +17,15 @@
     "react-dropzone": "^10.1.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/register": "^7.4.4",
+    "@babel/core": "^7.0.1",
+    "@babel/register": "^7.0.0",
     "chai": "^4.2.0",
-    "cross-env": "^5.2.0",
-    "cypress": "^3.2.0",
-    "cypress-file-upload": "^3.1.1",
+    "expect.js": "^0.3.1",
+    "mocha": "^5.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
-    "expect.js": "^0.3.1",
-    "mocha": "^6.1.4"
+    "cross-env": "^5.2.0",
+    "cypress": "^3.2.0",
+    "cypress-file-upload": "^3.1.1"
   }
 }

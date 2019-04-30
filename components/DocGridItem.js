@@ -11,7 +11,7 @@ export default (props) => {
       </div>
       <div className="doc-label-row">
         <div className="doc-size-label">
-          <span className="amount">{data.fileSize}</span>
+          <span className="amount">{data.size}</span>
           <span className="unit">kb</span>
         </div>
         <div className="doc-delete">

@@ -1,7 +1,7 @@
 export function totalSize(jsonBlob) {
   let total = 0
   jsonBlob.uploads.map((uploadedDoc) => {
-    total += Number(uploadedDoc.fileSize)
+    total += Number(uploadedDoc.size)
   })
   return total
 }

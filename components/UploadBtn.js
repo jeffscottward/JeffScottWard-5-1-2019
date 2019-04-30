@@ -3,8 +3,6 @@ import DocsContext from '../components/Context';
 import { useDropzone } from 'react-dropzone';
 import { checkFileSize, makeFileObj } from '../utils/files'
 
-// import axios from 'axios'
-
 function UploadBtn() {
   const { dispatch } = useContext(DocsContext)
   
@@ -12,21 +10,6 @@ function UploadBtn() {
     let file = fileUploaded[0]
     checkFileSize(file)
     dispatch({ type: "SET_DOC", payload: makeFileObj(file) })
-    
-    // Backend Server -- if there's time?
-      // let formData = new FormData();
-      // formData.append("image", file);
-      // console.log(formData);
-
-      // axios.post('/upload', formData, {
-      //   headers: {
-      //     'Content-Type': 'multipart/form-data'
-      //   }
-      // }).then(function () {
-      //   console.log('success!!!!');
-      // }).catch(function () {
-      //   console.log('FAILURE!!');
-      // });
   }
 
   const {

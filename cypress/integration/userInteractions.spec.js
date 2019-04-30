@@ -20,4 +20,5 @@ context('Actions', () => {
   
   // FILE UPLOAD TEST IF TIME
   // https://github.com/abramenal/cypress-file-upload#readme
+  // https://github.com/abramenal/cypress-file-upload/tree/master/example
 })

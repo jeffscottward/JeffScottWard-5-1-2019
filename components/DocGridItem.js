@@ -48,6 +48,7 @@ export default (props) => {
         
         .delete {
           padding: 2px 20px;
+          cursor: pointer;
         }  
       `}</style>
     </li>

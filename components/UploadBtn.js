@@ -5,7 +5,7 @@ import { checkFileSize, makeFileObj } from '../utils/files'
 
 // import axios from 'axios'
 
-function UploadBtn(props) {
+function UploadBtn() {
   const { dispatch } = useContext(DocsContext)
   
   function handleSuccessDrop (fileUploaded) {

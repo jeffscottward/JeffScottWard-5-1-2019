@@ -121,6 +121,6 @@ Any general observation about the API?
 ## Other Notes
   - API development is generally out of scope of UI Engineer, I can dabble but 48 hours is tight for the total ask
   - Most of Day 1 was spent learning a whole new state managment methodolgy -> React Context X React Hooks
-  - Didn't have time to build real functionality - but mocked it in `ExampleServer.js`
+  - Mocked an API in `ExampleServer.js` but did not use it, felt it was out of scope of UI/UX
   - The brief was labeled UI/UX - yet there was very little CSS effort.
   - What role is actually in consideration? This is mostly a full stack excercise.

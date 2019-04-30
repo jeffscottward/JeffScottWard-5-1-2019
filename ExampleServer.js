@@ -13,7 +13,7 @@ app.prepare().then(() => {
   const server = express()
 
   // Serve /pages/a.js with any params attached ?param1=XXX&param2=YYY
-  server.get('/', (req, res) => {
+  server.get('/a', (req, res) => {
     return app.render(req, res, '/a', req.query)
   })
 

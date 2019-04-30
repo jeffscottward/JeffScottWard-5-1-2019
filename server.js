@@ -2,6 +2,8 @@ const express = require('express')
 const next = require('next')
 const fs = require('fs');
 
+const formidable = require('formidable')
+
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -22,17 +24,34 @@ app.prepare().then(() => {
   //   return app.render(req, res, '/posts', { id: req.params.id })
   // })
 
-  server.get('/docs-api/', (req, res) => {
-    let fileContent;
-    
-    fs.readFile('./SampleState.json', function read(err, data) {
-      if (err) {throw err;}
-    
-      fileContent = data;
-      // console.log(fileContent);
-    
-      return handle(req, fileContent, '/', )
+  server.post('/upload', (req, res) => {
+    console.log(req)
+    console.log(res)
+
+    var form = new formidable.IncomingForm();
+
+    form.parse(req);
+
+    form.on('fileBegin', function (name, file) {
+      file.path = __dirname + '/uploads/' + file.name;
     });
+
+    form.on('file', function (name, file) {
+      console.log('Uploaded ' + file.name);
+    });
+
+    return handle(req, res)
+
+    // let fileContent;
+    
+    // fs.readFile('./SampleState.json', function read(err, data) {
+    //   if (err) {throw err;}
+    
+    //   fileContent = data;
+    //   // console.log(fileContent);
+    
+    //   return handle(req, fileContent, '/', )
+    // });
   })
 
   server.get('*', (req, res) => {

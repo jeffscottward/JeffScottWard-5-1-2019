@@ -1,38 +1,22 @@
-import React, { useState, useContext } from 'react'
-import Fuse from 'fuse.js'
+import React, { useState, useContext, useEffect } from 'react'
 import UploadBtn from './UploadBtn'
 import DocsContext from '../components/Context';
-
-var fuseOptions = {
-  shouldSort: true,
-  threshold: 0.6,
-  location: 0,
-  distance: 100,
-  maxPatternLength: 32,
-  minMatchCharLength: 1,
-  keys: [
-    "name",
-  ]
-};
+import fuzzySearch from '../utils/fuzzy';
 
 export default () => {
   const [searchString, setSearchString] = useState('')
   const { docs, dispatch } = useContext(DocsContext)
-  const fuse = new Fuse(docs.uploads, fuseOptions)
-
-  function runFuzzySearch(input) {
-    return fuse.search(input)
-  }
 
   function handleFuzzyInput (val) {
     setSearchString(val)
-    const fuzzyResult = runFuzzySearch(val)
-    console.log(fuzzyResult)
+    const fuzzyResult = fuzzySearch(docs.uploads, val)
     
     // Update Context here
     dispatch({ type: "SET_VISIBLE_DOCS", payload: fuzzyResult})
   }
 
+  // Set onlyVisible to match uploads to stay in sync
+  useEffect(() => handleFuzzyInput(''), []);
   return (
     <header>
       <input

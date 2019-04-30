@@ -21,12 +21,12 @@ export default () => {
       </div>
       <ul className="doc-grid">
         {
-          !docs.visible ? (
+          docs.onlyVisible.length === 0 ? (
             docs.uploads.map((item, idx) => (
               <DocGridItem key={'doc-upload' + idx} data={item} />
             ))
           ) : (
-            docs.visible.map((item, idx) => (
+            docs.onlyVisible.map((item, idx) => (
               <DocGridItem key={'doc-upload' + idx} data={item} />
             ))
           )

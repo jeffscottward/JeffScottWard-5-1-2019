@@ -1,60 +1,17 @@
 import React from 'react'
-import DocsContext from '../components/Context'
-import { produce } from "immer";
 
 import Header from '../components/Header'
 import DocArea from '../components/DocArea'
 import Normalize from '../components/Normalize'
 
 import SampleState from '../SampleState.json'
+import DocsContext from '../components/Context'
 
-function useImmerReducer(reducer, initialState) {
-  return React.useReducer(produce(reducer), initialState);
-}
-
-const docsReducer = (docs, action) => {
-  switch (action.type) {
-    case "SET_DOC":
-      docs.uploads.push(action.payload);
-      return;
-    case "REMOVE_DOC":
-      // Fancy algo - https://stackoverflow.com/a/26327271
-      var removeIndex = docs.uploads.map(item => item.id).indexOf(action.payload)
-      if(removeIndex >= 0){docs.uploads.splice(removeIndex, 1)}
-      return;
-    case "SET_VISIBLE_DOCS":
-      // if no fuzzy search started
-      // if (!!docs.visible === false){
-      // }
-      if(action.payload.length === 0 ) {
-        docs.visible = docs.uploads
-      } else {
-        docs.visible = action.payload
-      }
-      return;
-    default:
-      return docs;
-  }
-};
-
-// const visibleDocsReducer = (visibleDocs, action) => {
-//   switch (action.type) {
-//     case "SET_VISIBLE_DOCS":
-//       console.log('action.payload'+action.payload)
-//       visibleDocs = action.payload;
-//       return;
-//     case "RESET_VISIBLE_DOCS":
-//       visibleDocs = SampleState.docs;
-//       return;
-//     default:
-//       return visibleDocs;
-//   }
-// };
+import { useImmerReducer } from '../reducers/immerReducer'
+import { docsReducer } from '../reducers/docsReducer'
 
 export default () => {
   const [docs, dispatch] = useImmerReducer(docsReducer, SampleState.docs);
-  // const [visibleDocs, dispatch] = useImmerReducer(visibleDocsReducer, []);
-
   return (
     <DocsContext.Provider value={{
       docs: docs,

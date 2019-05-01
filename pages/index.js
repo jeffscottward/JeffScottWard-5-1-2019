@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 import Header from '../components/Header'
 import DocArea from '../components/DocArea'
@@ -12,8 +13,36 @@ import { docsReducer } from '../reducers/docsReducer'
 
 import { buttonStyles } from '../components/cssVars'
 
-export default () => {
-  const [docs, dispatch] = useImmerReducer(docsReducer, SampleState.docs);
+const Index = () => {
+  const [apiData, setApiData] = useState({
+    "docs": {
+      "uploads": [
+        {
+          "id": 314340,
+          "name": "XXX.jpg",
+          "type": "jpg",
+          "size": "300"
+        }
+      ],
+      "onlyVisible": []
+    }
+  })
+
+  async function getData() {
+    // Backend works!
+    const res = await axios.get('/docs')
+    const resData = res.data
+    console.log({resData})
+    return resData
+  }
+
+  useEffect(()=>{setApiData(getData())},[])
+
+  // Can't get apidData to reassign after useEffect...
+  const [docs, dispatch] = useImmerReducer(docsReducer, apiData.docs);
+
+  console.log({apiData})
+  
   return (
     <DocsContext.Provider value={{
       docs: docs,
@@ -59,10 +88,12 @@ export default () => {
 // Fetch is done and rendered to page before sending app to browser
 
 // Index.getInitialProps = async function () {
-//   const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
+//   const res = await axios.get('/docs')
 //   const data = await res.json()
-//   console.log(`Show data fetched. Count: ${data.length}`)
+//   console.log(`Show data fetched. ${data}`)
 //   return {
-//     shows: data
+//     docsREQ: data
 //   }
 // }
+
+export default Index

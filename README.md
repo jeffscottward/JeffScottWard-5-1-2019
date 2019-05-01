@@ -50,6 +50,7 @@ npx cypress run
 ## Improvements
  - An actual backend with endpoints - not simply loading a JSON file
  - 100% test coverage on both Unit and E2E
+ - Not commiting directly on master - ok for coding test I suppose
 
 ## Libraries
 - Next.js

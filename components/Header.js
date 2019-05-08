@@ -1,23 +1,23 @@
 import React, { useState, useContext, useEffect } from 'react'
 import UploadBtn from './UploadBtn'
-import { DocsContext } from '../context/docs'
+import { DocsContext, DocsActions } from '../state/reducers/docs'
 import fuzzySearch from '../utils/fuzzy';
-import { borderColor } from '../components/cssVars'
+import { borderColor } from '../cssVars'
+
+import { useStateValue } from '../state/state';
 
 export default () => {
-  const [searchString, setSearchString] = useState('')
-  const { docs, dispatch } = useContext(DocsContext)
-
+  const [searchString, setSearchString] = useState('');
+  const [docs, dispatch] = useStateValue()
+  
   function handleFuzzyInput (val) {
     setSearchString(val)
-    const fuzzyResult = fuzzySearch(docs.uploads, val)
-    
-    // Update Context here
-    dispatch({ type: "SET_VISIBLE_DOCS", payload: fuzzyResult})
+    dispatch({
+      type: "SET_VISIBLE_DOCS",
+      payload: fuzzySearch(docs.uploads, val)
+    })
   }
 
-  // Set onlyVisible to match uploads to stay in sync
-  useEffect(() => handleFuzzyInput(''), []);
   return (
     <header>
       <input

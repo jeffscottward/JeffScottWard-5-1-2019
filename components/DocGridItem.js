@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
-import { DocsContext } from '../context/docs'
+import { DocsContext, DocsActions } from '../state/reducers/docs'
+import { useStateValue } from '../state/state';
 
-import { borderColor } from '../components/cssVars'
+import { borderColor } from '../cssVars'
 
 export default (props) => {
-  let {data} = props
-  const { dispatch } = useContext(DocsContext)
+  const { data } = props
+  const [, dispatch] = useStateValue()
   return (
     <li className="doc">
       <div className="doc-label-row">
@@ -19,8 +20,11 @@ export default (props) => {
         <div className="doc-delete">
           <button
             className="delete"
-            onClick={e => dispatch({ type: "REMOVE_DOC", payload: data.id })}>
-              delete
+            onClick={e => dispatch({
+              type: "REMOVE_DOC",
+              payload: data.id
+            })}>
+              Delete
           </button>
         </div>
       </div>
@@ -45,6 +49,9 @@ export default (props) => {
         .doc-name {
           font-size: 25px;
           max-width: 100%;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
         }
         
         .delete {

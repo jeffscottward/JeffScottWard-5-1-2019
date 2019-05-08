@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
-import { DocsContext } from '../context/docs'
+import React from 'react'
 import DocGridItem from './DocGridItem'
 import { totalSize, totalDocs } from '../utils/totals'
 
+import { useStateValue } from '../state/state';
+
 export default () => {
-  const { docs } = useContext(DocsContext)
+  const [ docs ] = useStateValue()
   return (
     <main>
       <div className="doc-area">

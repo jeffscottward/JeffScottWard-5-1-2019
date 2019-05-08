@@ -1,15 +1,20 @@
-import React, {useContext} from 'react'
-import { DocsContext } from '../context/docs'
+import React from 'react'
+import { DocsActions } from '../state/reducers/docs'
 import { useDropzone } from 'react-dropzone';
 import { checkFileSize, makeFileObj } from '../utils/files'
 
+import { useStateValue } from '../state/state';
+
 function UploadBtn() {
-  const { dispatch } = useContext(DocsContext)
+  const [, dispatch] = useStateValue()
   
   function handleSuccessDrop (fileUploaded) {
     let file = fileUploaded[0]
     checkFileSize(file)
-    dispatch({ type: "SET_DOC", payload: makeFileObj(file) })
+    dispatch({
+      type: "SET_DOC",
+      payload: makeFileObj(file)
+    })
   }
 
   const {

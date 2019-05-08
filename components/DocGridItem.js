@@ -1,10 +1,9 @@
 import React, { useContext } from 'react'
-import DocsContext from '../components/Context';
-
+import { DocsContext } from '../context/docsContext'
 import { borderColor } from '../components/cssVars'
 
 export default (props) => {
-  let {data} = props
+  const { data } = props
   const { dispatch } = useContext(DocsContext)
   return (
     <li className="doc">
@@ -19,8 +18,11 @@ export default (props) => {
         <div className="doc-delete">
           <button
             className="delete"
-            onClick={e => dispatch({ type: "REMOVE_DOC", payload: data.id })}>
-              delete
+            onClick={e => dispatch({ 
+              type: "REMOVE_DOC",
+              payload: data.id
+            })}>
+              Delete
           </button>
         </div>
       </div>
@@ -45,6 +47,9 @@ export default (props) => {
         .doc-name {
           font-size: 25px;
           max-width: 100%;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
         }
         
         .delete {

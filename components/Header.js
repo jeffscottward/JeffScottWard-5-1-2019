@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react'
 import UploadBtn from './UploadBtn'
-import DocsContext from '../components/Context';
-import fuzzySearch from '../utils/fuzzy';
-
-import { borderColor } from '../components/cssVars'
+import { DocsActions } from '../context/docs'
+import { DocsContext } from '../context/docsContext'
+import fuzzySearch from '../utils/fuzzy'
+import { borderColor, mobileBreakPoint } from '../components/cssVars'
 
 export default () => {
   const [searchString, setSearchString] = useState('')
@@ -11,14 +11,15 @@ export default () => {
 
   function handleFuzzyInput (val) {
     setSearchString(val)
-    const fuzzyResult = fuzzySearch(docs.uploads, val)
-    
-    // Update Context here
-    dispatch({ type: "SET_VISIBLE_DOCS", payload: fuzzyResult})
+    dispatch({
+      type: DocsActions.SET_VISIBLE_DOCS,
+      payload: fuzzySearch(docs.uploads, val)
+    })
   }
 
   // Set onlyVisible to match uploads to stay in sync
-  useEffect(() => handleFuzzyInput(''), []);
+  useEffect(() => handleFuzzyInput(''), [])
+  console.log(docs)
   return (
     <header>
       <input
@@ -32,13 +33,9 @@ export default () => {
       <style jsx>{`
         header {
           display: flex;
-        }
-
-        header {
           justify-content: space-between;
           margin-bottom: 60px;
         }
-
         .search {
           background: #F7F7F7;
           border: 1px solid ${borderColor};
@@ -46,15 +43,10 @@ export default () => {
           padding: 10px;
           font-size: 1rem;
         }
-
         .search::placeholder {color: #3D3D3D;}
         .upload { padding: 0 50px; }  
-
-        @media (max-width: 768px) {
-          header {
-            flex-direction: column-reverse;
-          }
-
+        @media (max-width: ${mobileBreakPoint}) {
+          header { flex-direction: column-reverse; }
           .search, .upload {
             width: 100%;
             height: 40px;

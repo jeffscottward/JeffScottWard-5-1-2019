@@ -2,27 +2,22 @@ import React from 'react'
 
 import Header from '../components/Header'
 import DocArea from '../components/DocArea'
-import Normalize from '../components/Normalize'
 
 import SampleState from '../SampleState.json'
-import DocsContext from '../components/Context'
+import { DocsReducer } from '../context/docs'
+import { DocsContext } from '../context/docsContext'
 
-import { useImmerReducer } from '../reducers/immerReducer'
-import { docsReducer } from '../reducers/docsReducer'
-
+import NormalizeCSS from '../components/NormalizeCSS'
 import { buttonStyles } from '../components/cssVars'
 
 export default () => {
-  const [docs, dispatch] = useImmerReducer(docsReducer, SampleState.docs);
+  const [docs, dispatch] = React.useReducer(DocsReducer, SampleState.docs)
   return (
-    <DocsContext.Provider value={{
-      docs: docs,
-      dispatch
-    }}>
+    <DocsContext.Provider value={{docs, dispatch}}>
       <div id="app">
         <Header />
         <DocArea />
-        <Normalize />
+        <NormalizeCSS />
         <style jsx global>{`
           * {
             box-sizing: border-box;

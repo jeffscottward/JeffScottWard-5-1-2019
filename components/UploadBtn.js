@@ -1,7 +1,9 @@
 import React, {useContext} from 'react'
-import DocsContext from '../components/Context';
-import { useDropzone } from 'react-dropzone';
+import { DocsActions } from '../context/docs'
+import { DocsContext } from '../context/docsContext'
+import { useDropzone } from 'react-dropzone'
 import { checkFileSize, makeFileObj } from '../utils/files'
+import { borderColor, mobileBreakPoint } from '../components/cssVars'
 
 function UploadBtn() {
   const { dispatch } = useContext(DocsContext)
@@ -9,7 +11,10 @@ function UploadBtn() {
   function handleSuccessDrop (fileUploaded) {
     let file = fileUploaded[0]
     checkFileSize(file)
-    dispatch({ type: "SET_DOC", payload: makeFileObj(file) })
+    dispatch({
+      type: DocsActions.SET_DOC,
+      payload: makeFileObj(file)
+    })
   }
 
   const {
@@ -22,7 +27,7 @@ function UploadBtn() {
     multiple: false,
     accept: 'image/jpeg, image/png',
     onDropAccepted: files => handleSuccessDrop(files)
-  });
+  })
 
   return (
     <section className="container">
@@ -32,8 +37,8 @@ function UploadBtn() {
       </div>
       <style jsx>{`
         .upload { padding: 10px 50px; cursor: pointer;} 
-        @media (max-width: 768px) {
-          .upload {width: 100%;}
+        @media (max-width: ${mobileBreakPoint}) {
+          .upload {width: 100%}
         }
       `}</style>
     </section>

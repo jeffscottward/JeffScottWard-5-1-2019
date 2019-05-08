@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react'
-import DocsContext from '../components/Context';
+import { DocsContext } from '../context/docsContext'
 import DocGridItem from './DocGridItem'
 import { totalSize, totalDocs } from '../utils/totals'
+import { borderColor, mobileBreakPoint } from '../components/cssVars'
 
 export default () => {
   const { docs } = useContext(DocsContext)
@@ -60,7 +61,7 @@ export default () => {
             margin-top: 10px;
           }
 
-          @media (max-width: 768px) {
+          @media (max-width: ${mobileBreakPoint}) {
             .docs-status {
               flex-direction: column;
             }

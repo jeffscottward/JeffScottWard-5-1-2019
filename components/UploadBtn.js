@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import DocsContext from '../components/Context';
+import { DocsContext } from '../context/docs'
 import { useDropzone } from 'react-dropzone';
 import { checkFileSize, makeFileObj } from '../utils/files'
 

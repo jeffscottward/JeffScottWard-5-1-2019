@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import UploadBtn from './UploadBtn'
-import DocsContext from '../components/Context';
+import { DocsContext } from '../context/docs'
 import fuzzySearch from '../utils/fuzzy';
-
 import { borderColor } from '../components/cssVars'
 
 export default () => {

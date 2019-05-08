@@ -2,10 +2,11 @@ import React from 'react'
 
 import Header from '../components/Header'
 import DocArea from '../components/DocArea'
-import Normalize from '../components/Normalize'
+import NormalizeCSS from '../components/NormalizeCSS'
 
 import SampleState from '../SampleState.json'
-import DocsContext from '../components/Context'
+
+import { DocsContext } from '../context/docs'
 
 import { useImmerReducer } from '../reducers/immerReducer'
 import { docsReducer } from '../reducers/docsReducer'
@@ -22,7 +23,7 @@ export default () => {
       <div id="app">
         <Header />
         <DocArea />
-        <Normalize />
+        <NormalizeCSS />
         <style jsx global>{`
           * {
             box-sizing: border-box;

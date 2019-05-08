@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react'
-import DocsContext from '../components/Context';
+import React, { useContext } from 'react'
+import { DocsContext } from '../context/docs'
 import DocGridItem from './DocGridItem'
 import { totalSize, totalDocs } from '../utils/totals'
 

@@ -1,9 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState } from 'react'
 import UploadBtn from './UploadBtn'
-import { DocsContext, DocsActions } from '../state/reducers/docs'
 import fuzzySearch from '../utils/fuzzy';
 import { borderColor } from '../cssVars'
-
 import { useStateValue } from '../state/state';
 
 export default () => {

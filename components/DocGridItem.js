@@ -1,7 +1,5 @@
-import React, { useContext } from 'react'
-import { DocsContext, DocsActions } from '../state/reducers/docs'
+import React from 'react'
 import { useStateValue } from '../state/state';
-
 import { borderColor } from '../cssVars'
 
 export default (props) => {

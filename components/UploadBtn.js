@@ -1,8 +1,6 @@
 import React from 'react'
-import { DocsActions } from '../state/reducers/docs'
 import { useDropzone } from 'react-dropzone';
 import { checkFileSize, makeFileObj } from '../utils/files'
-
 import { useStateValue } from '../state/state';
 
 function UploadBtn() {

@@ -1,7 +1,6 @@
 import React from 'react'
 import DocGridItem from './DocGridItem'
 import { totalSize, totalDocs } from '../utils/totals'
-
 import { useStateValue } from '../state/state';
 
 export default () => {

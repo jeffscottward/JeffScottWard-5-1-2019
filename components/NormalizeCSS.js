@@ -1,6 +1,6 @@
 import React from 'react'
 
-// Normailze Stylesheet Minified
+// Normailze.css Stylesheet Minified
 export default () => (
   <>
     <style jsx global>{`
